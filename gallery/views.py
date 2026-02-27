@@ -27,7 +27,7 @@ def home(request):
     else:
         assets = assets.order_by('-created_at')
 
-    paginator = Paginator(assets, 8)
+    paginator = Paginator(assets, 9)
 
     page_number = request.GET.get('page')
 
@@ -35,7 +35,7 @@ def home(request):
 
     # 5. Отдаем результат
     context_data = {
-        'page_title': 'Главная Галерея',
+        'page_title': 'Rom9kStore',
         'page_obj' : page_obj,
     }
 

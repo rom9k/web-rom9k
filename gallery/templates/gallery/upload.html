@@ -1,6 +1,8 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="ru">
 <head>
+    <link rel="stylesheet" href="{% static 'gallery/style.css' %}">
     <meta charset="UTF-8">
     <title>Загрузка модели</title>
     <style>
@@ -10,37 +12,41 @@
     </style>
 </head>
 <body>
-    <h1>Загрузить новую 3D модель</h1>
-    <form method="post" enctype="multipart/form-data">
-        {% csrf_token %}
-        <div class="form-group">
-            {{ form.as_p }}
-        </div>
 
-        <div style="margin-bottom: 20px;">
-            <p>Авто-генерация превью:</p>
-
-            <div id="preview-container" style="width: 300px; height: 200px; background: #eee; border: 1px solid #ccc;">
-                <span style="display: block; padding: 80px 0; text-align: center; color: #999;">Выберите файл...</span>
+    <div class="upload-page">
+        <h1>Загрузить новую 3D модель</h1>
+        
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="form-group">
+                {{ form.as_p }}
             </div>
 
-            <input type="hidden" name="image_data" id="id_image_data">
-        </div>
-        <button type="submit"  id="submit-btn" disabled>Загрузить в базу</button>
-
-        {% load static %}
-        <script type="importmap">
-        {
-            "imports": {
-                "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
-                "three/addons/": "https://unpkg.com/three@0.160.0/examples/jsm/"
-            }
-        }
-        </script>
-        <script type="module" src="{% static 'gallery/js/autothumb.js' %}"></script>
+            <div style="margin-bottom: 20px;">
+                <p>Превью:</p>
+                <div id="preview-container">
+                    <span>⌛</span>
+                </div>
+                <input type="hidden" name="image_data" id="id_image_data">
+            </div>
+            
+            <button type="submit" id="submit-btn" disabled>Загрузить в базу</button>
+        </form>
         
-    </form>
-    <br>
-    <a href="{% url 'home' %}">← Назад в галерею</a>
+        <br>
+        <a href="{% url 'home' %}" style="color: #666; text-decoration: none;">← Назад в галерею</a>
+    </div>
+
+    <!-- Остальные скрипты (importmap, autothumb.js) остаются как были -->
+    {% load static %}
+    <script type="importmap">
+    {
+        "imports": {
+            "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
+            "three/addons/": "https://unpkg.com/three@0.160.0/examples/jsm/"
+        }
+    }
+    </script>
+    <script type="module" src="{% static 'gallery/js/autothumb.js' %}"></script>
 </body>
 </html>

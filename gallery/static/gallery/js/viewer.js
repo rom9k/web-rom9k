@@ -38,7 +38,7 @@ export function loadModel(containerId, modelUrl) {
 
     container.appendChild(renderer.domElement);
 
-    // 🔥 важно — чтобы canvas перекрывал фон
+    // чтобы canvas перекрывал фон
     renderer.domElement.style.position = 'absolute';
     renderer.domElement.style.top = '0';
     renderer.domElement.style.left = '0';

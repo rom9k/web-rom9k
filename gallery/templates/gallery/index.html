@@ -27,8 +27,13 @@
     {% endif %}
 
     <header>
-      <h1>{{page_title}}</h1>
-       <a href="{% url 'upload' %}" class="btn" style="background-color: #28a745;">+ Загрузить модель</a>
+      <!-- <h1>{{page_title}}</h1>
+       <a href="{% url 'upload' %}" class="btn" style="background-color: #28a745;">+ Загрузить модель</a> -->
+        <div class="logo-wrapper">
+            <img src="{% static 'gallery/img/icon.jpg' %}" alt="Logo" class="logo-img">
+            <h1>{{ page_title }}</h1>
+        </div>
+    <a href="{% url 'about' %}" class="about-link">О нас</a>
     </header>
         <div class="toolbar">
             <form action="{% url 'home' %}" method="get" style="display: flex; width: 100%; gap: 10px; align-items: center;">
@@ -129,6 +134,11 @@
             </span>
         </div>
     </main>
+
+    <a href="{% url 'upload' %}" class="fab-upload">
+        <span>+</span> Загрузить модель
+    </a>
+
     <script type="module">
         import { loadModel } from "{% static 'gallery/js/viewer.js' %}";
 
